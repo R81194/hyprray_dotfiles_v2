@@ -1,0 +1,88 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "modules-left": ["custom/launcher","tray","custom/ss"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": [
+        "clock",
+        "pulseaudio",
+        "backlight",
+        "battery",
+        "custom/notification"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "●",
+            "default": "○"
+        },
+        "persistent-workspaces": {
+            "*": [1, 2, 3, 4, 5]
+        },
+        "tooltip": false
+    },
+
+    "custom/launcher": {
+        "format": " 󰣇 ",
+        "on-click": "rofi -show drun -click-to-exit -theme ~/.config/rofi/search.rasi",
+        "tooltip": false
+    },
+
+    "tray": {
+        "spacing": 8
+    },
+
+    "pulseaudio": {
+        "format": "VOL {volume}%",
+        "format-muted": "MUTED",
+        "tooltip": false
+    },
+
+    "backlight": {
+        "format": "BRI {percent}%",
+        "tooltip": false
+    },
+
+    "battery": {
+        "interval": 60,
+        "format": "BAT {capacity}%",
+        "format-charging": "CHG {capacity}%",
+        "tooltip": false
+    },
+
+    "clock": {
+        "interval": 60,
+        "format": "{:%H:%M | %d-%m-%Y}",
+        "tooltip": false
+    },
+
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+        "notification": "<span foreground='white'><sup></sup></span>",
+        "none": "",
+        "dnd-notification": "<span foreground='white'><sup></sup></span>",
+        "dnd-none": "",
+        "inhibited-notification": "<span foreground='white'><sup></sup></span>",
+        "inhibited-none": "",
+        "dnd-inhibited-notification": "<span foreground='white'><sup></sup></span>",
+        "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+    "custom/ss":{
+        "format": " ",
+        "tooltip": false,
+        "tooltip-format":"Screenshot",
+        "on-click":"~/.config/scripts/screenshot.sh"
+  }
+}

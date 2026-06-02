@@ -1,0 +1,259 @@
+/* -----------------------------------------------------
+   PYWAL IMPORT
+   ----------------------------------------------------- */
+@import "/home/noir_ray/.cache/wal/colors-waybar.css";
+
+/* -----------------------------------------------------
+   1. VARIABLES & PALETTE (DYNAMIC)
+   ----------------------------------------------------- */
+/* Mapping Pywal colors to your semantic names.
+   We use alpha() to keep the transparencies you liked.
+*/
+
+@define-color bg_main    rgba(0, 0, 0, 0.0);   
+@define-color module_bg  alpha(@background, 0.7);   
+@define-color click_bg   alpha(@color0, 0.9);   
+@define-color border_col alpha(@foreground, 0.15);
+
+@define-color text_main  @foreground;
+@define-color accent     @color4;  /* Blue */
+@define-color green      @color2;
+@define-color yellow     @color3;
+@define-color red        @color1;
+@define-color cyan       @color6;
+@define-color orange     @color11; /* Usually a lighter yellow/orange */
+@define-color pink       @color5;
+
+/* -----------------------------------------------------
+   2. GLOBAL RESET
+   ----------------------------------------------------- */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: @bg_main;
+}
+
+/* -----------------------------------------------------
+   3. MODULE STYLING (The Pills)
+   ----------------------------------------------------- */
+
+#clock, #battery, #cpu, #gpmemory, #memory, #disk, #temperature, 
+#network, #pulseaudio, #custom-media, #tray, #mode, 
+#custom-playerinfo, #custom-home, #bluetooth, #custom-wallpaper, #window, #custom-notification{
+    
+    padding: 1px 12px;     
+    margin: 4px 4px;     
+    border-radius: 15px; 
+    background-color: @module_bg;
+    color: @text_main;
+    border: 1px solid @border_col;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
+}
+
+#network, #cpu, #memory, #battery, #bluetooth, #pulseaudio, #custom-playerinfo, #custom-wallpaper, #custom-notification {
+    font-family: "JetBrainsMono Nerd Font Propo", sans-serif;
+    font-weight: 500;
+}
+
+/* HOVER EFFECT */
+#clock:hover, #battery:hover, #cpu:hover, #memory:hover, #network:hover, 
+#pulseaudio:hover, #bluetooth:hover, #custom-home:hover, #custom-wallpaper:hover, #window:hover, #custom-playerinfo:hover, #custom-notification:hover {
+    background-color: alpha(@background, 0.9); 
+    border-color: @accent;
+    box-shadow: 0 0 3px @accent;
+}
+
+/* CLICK EFFECT */
+#clock:active, #battery:active, #cpu:active, #memory:active, #network:active, 
+#pulseaudio:active, #custom-home:active, #bluetooth:active, #custom-playerinfo:active, #custom-notification:active {
+    background-color: @click_bg;
+    box-shadow: none; 
+    border-color: @text_main;
+}
+
+/* -----------------------------------------------------
+   4. WORKSPACES (MATCHSTICK STYLE)
+   ----------------------------------------------------- */
+#workspaces {
+    min-width: 0;
+    margin: 2px 5px; 
+    padding: 0;
+    background-color: @module_bg;
+    border-radius: 20px;
+}
+
+#workspaces button {
+    color: @textmain;
+    padding: 0; 
+    min-height: 2px;
+    min-width: 20px; 
+    margin: 9px 3px; 
+    border-radius: 99px; 
+    border: none;
+    /* Made transparent white/black to blend with any wallpaper */
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.2));
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: none;
+
+}
+
+#workspace button.empty {
+    color: transparent;
+    padding: 0; 
+    min-height: 2px;
+    min-width: 20px; 
+    margin: 9px 3px; 
+    border-radius: 99px; 
+    border: none;
+    /* Made transparent white/black to blend with any wallpaper */
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.2));
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: none;
+}
+
+#workspaces button:hover {
+    min-height: 4px;
+    min-width: 25px;
+    margin: 8px 3px; 
+    /* Changed to Dynamic Colors: Blue to Red gradient */
+    background: linear-gradient(90deg, alpha(@color4, 0.8), alpha(@color1, 0.6));
+    color: @color4;
+    border-radius: 99px;
+    box-shadow: 0 0 3px alpha(@color4, 0.5);
+    transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.urgent {
+    background: @red;
+    color: @textmain;
+    min-height: 2px;
+    border-radius: 99px;
+}
+
+#workspaces button.active {
+    /* Changed to Dynamic Colors: Accent to Text gradient */
+    background: linear-gradient(90deg, @accent, @text_main);
+    color: @color1;
+    min-height: 2px; 
+    min-width: 45px;
+    margin: 9px 3px;
+    border-radius: 99px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 5px alpha(@accent, 0.6);
+}
+
+/* -----------------------------------------------------
+   5. SPECIFIC MODULE COLORS & TWEAKS
+   ----------------------------------------------------- */
+#window {
+    font-size: 12px;
+    color: @text_main;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
+}
+
+#clock {
+    font-weight: bold;
+    color: @cyan;
+}
+
+#custom-home {
+    font-size: 16px; 
+    color: @accent;
+    padding: 0 10px;
+}
+
+/* BATTERY */
+#battery.charging { color: @green; }
+#battery.good { color: @green; }
+#battery.warning { color: @orange; }
+#battery.critical { color: @red; animation: blink 2s infinite; }
+
+/* NETWORK */
+#network.disabled { color: @red; }
+#network.disconnected { color: @red; }
+#network.linked { color: @text_main; }
+#network.ethernet { color: @cyan; }
+#network.wifi { color: @cyan; }
+
+/* BLUETOOTH */
+#bluetooth.on { color: @cyan; }
+#bluetooth.off { color: @red; }
+#bluetooth.connected { color: @green; }
+
+/* AUDIO */
+#pulseaudio { color: @pink; }
+#pulseaudio.muted { color: @red; }
+
+/* SLIDER */
+#pulseaudio-slider { margin: 0 5px; }
+#pulseaudio-slider slider {
+    min-height: 8px;
+    min-width: 8px;
+    border-radius: 50%;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+#pulseaudio-slider trough {
+    min-height: 4px;
+    min-width: 60px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.5);
+}
+#pulseaudio-slider highlight {
+    min-width: 0px;
+    border-radius: 4px;
+    background: @cyan;
+}
+
+#custom-notification.dnd-none,
+#custom-notification.dnd-notification {
+    color: @color8; /* Make it look "disabled" or greyed out */
+}
+
+#clock {
+    font-family: "archistico";
+    font-size: 20;
+}
+
+/* VISUALIZER */
+#custom-cava {
+    font-family: "JetBrains Mono";
+    color: @cyan;
+    padding: 0 6px;
+    margin: 4px 3px;
+}
+
+/* TOOLTIP STYLING */
+tooltip {
+    /* Dynamic Background */
+    background: alpha(@background, 0.8); 
+    border-radius: 15px; 
+    border: 1px solid @border_col; 
+}
+
+tooltip label {
+    color: @text_main; 
+    padding: 5px; 
+}
+
+/* TRAY */
+#tray { padding: 0 12px; }
+#tray > .passive { -gtk-icon-effect: dim; }
+#tray > .needs-attention { -gtk-icon-effect: highlight; background-color: @red; }
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}

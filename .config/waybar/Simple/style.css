@@ -1,0 +1,198 @@
+/* ============================================================
+   IMPORT & GLOBAL
+   ============================================================ */
+
+@import url("/home/noir_ray/.cache/wal/colors-waybar.css");
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+window#waybar {
+    background-color: transparent; 
+    color: @foreground;
+}
+
+/* Container styling for the bar sections */
+.modules-left, 
+.modules-center, 
+.modules-right {
+    background-color: alpha(@background, 0.85);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding: 2px 6px; 
+}
+
+/* ============================================================
+   MODULE BASE STYLING
+   ============================================================ */
+
+#network,
+#bluetooth,
+#tray,
+#battery,
+#disk,
+#memory,
+#cpu,
+#custom-gpu-temp,
+#workspaces,
+#window,
+#cava,
+#custom-screenshot,
+#pulseaudio,
+#backlight,
+#clock {
+    padding: 0 10px;
+    margin: 0;
+    background-color: transparent;
+}
+
+/* ============================================================
+   LEFT & DRAWER MODULES
+   ============================================================ */
+
+#network    { color: @color4; }
+
+#bluetooth           { color: @color4; }
+#bluetooth.disabled  { color: @color3; }
+#bluetooth.connected { color: @color6; }
+
+#disk       { color: @color6; }
+#memory     { color: @color5; } 
+#cpu        { color: @color3; }
+
+#custom-gpu-temp { color: @color4; }
+#custom-gpu-temp.critical { color: @color1; }
+
+#battery { color: @color5; }
+#battery.warning { color: @color3; }
+#battery.critical { 
+    color: @color1; 
+    animation: blink 0.5s linear infinite alternate; 
+}
+
+/* ============================================================
+   CENTER: WORKSPACES & WINDOW
+   ============================================================ */
+
+#workspaces button {
+    padding: 0 4px; 
+    margin: 0 2px;
+    color: @foreground;
+    border-radius: 8px;
+    min-width: 28px;
+    transition: background-color 0.2s ease, color 0.2s ease; 
+}
+
+#workspaces button.active {
+    color: @color0;
+    background-color: @color4; 
+}
+
+#workspaces button:hover {
+    background-color: alpha(@color4, 0.5);
+    color: @foreground;
+}
+
+#workspaces .taskbar-window {
+    background-color: transparent; 
+    padding: 0 2px;
+    transition: opacity 0.2s ease;
+}
+
+/* --- The Anti-Shake Crossfade Logic --- */
+
+/* 1. Empty workspace: Normal number */
+#workspaces button.empty .workspace-label {
+    font-size: 14px;
+    color: @foreground;
+    padding: 0 6px;
+}
+
+/* 2. Populated: Hide label structure, pull icon over */
+#workspaces button:not(.empty) .workspace-label {
+    font-size: 14px;
+    color: transparent;
+    margin-right: -16px; 
+    padding-left: 6px;
+    transition: color 0.2s ease;
+}
+
+/* 3. Hover: Reveal label, hide icon (without removing space) */
+#workspaces button:hover:not(.empty) .workspace-label {
+    color: @foreground;
+}
+
+#workspaces button:hover:not(.empty) .taskbar-window {
+    opacity: 0;
+}
+
+#window { color: @color6; }
+
+/* ============================================================
+   RIGHT MODULES & TRAY STATES
+   ============================================================ */
+
+#pulseaudio         { color: @color5; }
+#pulseaudio.muted   { color: @color1; }
+#backlight          { color: @color3; }
+#custom-screenshot  { color: @color4; }
+#cava               { color: @color4; }
+
+#clock {
+    color: @color2; 
+    font-weight: 800;
+}
+
+/* Dim icons that are running in the background but inactive */
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+/* Add a subtle background indicator for apps wanting attention (e.g., messages) */
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: alpha(@color1, 0.3); 
+    border-radius: 8px;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes blink {
+    to {
+        background-color: alpha(@color1, 0.5);
+        color: @color0;
+    }
+}
+
+/* ============================================================
+   CONTEXT MENUS (TRAY POPUPS)
+   ============================================================ */
+
+menu {
+    border-radius: 12px; 
+    background-color: alpha(@background, 0.95);
+    color: @foreground;
+    border: 1px solid @color4;
+    padding: 6px;
+}
+
+menuitem {
+    border-radius: 8px;
+    padding: 4px 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+menuitem:hover {
+    background-color: @color4;
+    color: @color0;
+}
+#bluetooth {
+    font-size: 18px; 
+}

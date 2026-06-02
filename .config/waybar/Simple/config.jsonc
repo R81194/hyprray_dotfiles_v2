@@ -1,0 +1,183 @@
+{
+    // --- General Settings ---
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "spacing": 8,
+
+    // --- Module Layout ---
+    "modules-left": [
+        "tray",
+        "group/drawer",
+        "network"
+    ],
+    "modules-center": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "custom/screenshot",
+        "pulseaudio",
+        "clock",
+        "battery"
+    ],
+
+    // --- Left Modules ---
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+
+    "group/drawer": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "drawer-child",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "backlight",
+            "disk",
+            "memory",
+            "cpu",
+            "custom/gpu-temp"
+        ]
+    },
+
+    "network": {
+        "format-wifi": "  {essid:8}",
+        "format-ethernet": "󰈀  Wired",
+        "format-disconnected": "⚠  Offline",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) "
+    },
+
+    // --- Center Modules ---
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}{windows}",
+        "format-window-separator": "",
+        "workspace-taskbar": {
+            "enable": true,
+            "update-active-window": true,
+            "format": "{icon}",
+            "icon-size": 21,
+            "icon-theme": "Numix-Circle",
+            "orientation": "horizontal"
+        },
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 10,
+        "rewrite": {
+            "(.*) - Brave": "🌎 $1",
+            "(.*) - Visual Studio Code": "󰨞 $1",
+            "(.*) - Kitty": " $1",
+            "^$": ""
+        }
+    },
+
+    // --- Right Modules ---
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "󰖁  Muted",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "clock": {
+        "format": "{:%a, %b-%d-%y | %I:%M %p}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months":   "<span color='#ffead3'><b>{}</b></span>",
+                "days":     "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":    "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today":    "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "󰂄  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "on-click": "swaync-client -t -sw"
+    },
+
+    // --- Hardware (Inside Drawer) ---
+    "backlight": {
+        "format": "{icon}  {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"]
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "{percentage_used}% ",
+        "path": "/",
+        "tooltip": true,
+        "tooltip-format": "{used}/{total} "
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "  {used:0.1f}G/{total:0.1f}G"
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": "  {usage}%"
+    },
+
+    "custom/gpu-temp": {
+        "exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader",
+        "format": " {}°C",
+        "interval": 15,
+        "tooltip": true,
+        "tooltip-format": "NVIDIA GPU Temperature"
+    },
+
+    // --- Custom Modules ---
+    "custom/screenshot": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Screenshot",
+        "on-click": "~/.config/scripts/screenshot.sh",
+        "on-click-right": "~/.config/rofi/scripts/wallselect.sh"
+    },
+
+    "custom/power": {
+        "format": "⏻ ",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/waybar/power_menu.xml",
+        "menu-actions": {
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        }
+    }
+}

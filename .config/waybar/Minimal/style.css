@@ -1,0 +1,50 @@
+* {
+    /* Strict removal of curves and animations */
+    border-radius: 0;
+    transition: none;
+    box-shadow: none;
+    text-shadow: none;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #000000;
+    color: #cdd6f4;
+}
+
+/* Center Workspaces */
+#workspaces button {
+    color: #ffffff;
+    background: transparent;
+    padding: 0 6px;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+}
+
+/* Right Modules Container */
+.modules-right > widget > * {
+    background-color: #111111;
+    color: #eeeeee;
+    padding: 0 10px;
+    margin: 4px 3px;
+    border: 1px solid #333333;
+}
+
+/* Specific module tweaks */
+#tray {
+    padding: 0 6px;
+}
+
+#custom-launcher {
+    color: #ffffff;
+    background-color: #1a1a1a;
+}
+
+#custom-ss {
+    color: #ffffff;
+    background-color: #111111;
+}

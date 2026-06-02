@@ -1,0 +1,170 @@
+/* --- Global Reset: STRICTLY NO CURVES --- */
+* {
+    border: none;
+    border-radius: 0; 
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", monospace;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    border-bottom: 2px solid #313244;
+}
+
+/* --- Base styling for all modules --- */
+#workspaces button,
+#window,
+#cava,
+#clock,
+#idle_inhibitor,
+#pulseaudio,
+#network,
+#bluetooth,
+#cpu,
+#memory,
+#custom-gpu-temp,
+#backlight,
+#language,
+#battery,
+#tray,
+#custom-power,
+#custom-media {
+    padding: 0 12px;
+    color: #1e1e2e;
+}
+
+/* --- Sharp Block Colors --- */
+
+/* Left Side */
+#custom-power {
+    background-color: #f38ba8; /* Red */
+    color: #1e1e2e;
+    font-size: 16px;
+    padding-right: 15px;
+}
+
+#workspaces button {
+    background-color: #313244;
+    color: #cdd6f4;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button.active {
+    background-color: #89b4fa; /* Blue */
+    color: #1e1e2e;
+}
+
+#workspaces button:hover {
+    background-color: #f9e2af; /* Yellow */
+    color: #1e1e2e;
+}
+
+#window {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+}
+
+#cava {
+    background-color: #313244; /* Matches inactive workspace background */
+    color: #cba6f7;            /* Sharp purple for the audio bars */
+    border-left: 2px solid #1e1e2e; /* Hard vertical line separating it from workspaces */
+}
+
+#custom-media {
+    background-color: #a6e3a1; /* Green */
+    color: #1e1e2e;
+}
+
+/* Center */
+#clock {
+    background-color: #cba6f7; /* Purple */
+    color: #1e1e2e;
+}
+
+/* Right Side */
+#idle_inhibitor {
+    background-color: #f9e2af; /* Yellow */
+}
+
+#pulseaudio {
+    background-color: #89dceb; /* Sky Blue */
+}
+
+#pulseaudio.muted {
+    background-color: #585b70;
+    color: #cdd6f4;
+}
+
+#network {
+    background-color: #89b4fa; /* Blue */
+}
+
+#network.disconnected {
+    background-color: #f38ba8; /* Red */
+}
+
+#bluetooth {
+    background-color: #89b4fa; /* Blue */
+    border-left: 2px solid #1e1e2e; /* Separation line for same-color blocks */
+}
+
+#cpu {
+    background-color: #fab387; /* Peach */
+}
+
+#memory {
+    background-color: #f9e2af; /* Yellow */
+}
+
+#custom-gpu-temp {
+    background-color: #a6e3a1; /* Green */
+}
+
+#custom-gpu-temp.critical {
+    background-color: #f38ba8; /* Red */
+}
+
+#backlight {
+    background-color: #f5c2e7; /* Pink */
+}
+
+#language {
+    background-color: #cba6f7; /* Purple */
+}
+
+#battery {
+    background-color: #a6e3a1; /* Green */
+}
+
+#battery.warning {
+    background-color: #f9e2af; /* Yellow */
+}
+
+#battery.critical {
+    background-color: #f38ba8; /* Red */
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.charging {
+    background-color: #89dceb; /* Sky */
+}
+
+#tray {
+    background-color: #313244;
+}
+
+/* Sharp Blink Animation */
+@keyframes blink {
+    to {
+        background-color: #1e1e2e;
+        color: #f38ba8;
+    }
+}

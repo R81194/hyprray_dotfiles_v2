@@ -1,0 +1,134 @@
+/* Acrylic Colors */
+@define-color bg-acrylic rgba(20, 20, 30, 0.3); /* Very transparent to show blur */
+@define-color bg-widget rgba(255, 255, 255, 0.05); /* Slight white tint for contrast */
+@define-color fg-text #cdd6f4;
+@define-color primary #89b4fa;
+@define-color primary-glass rgba(137, 180, 250, 0.4);
+@define-color urgent rgba(243, 139, 168, 0.7);
+@define-color border-transparent rgba(255, 255, 255, 0.08);
+
+* {
+  font-family: "JetBrainsMono Nerd Font", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Control Center Window */
+.control-center {
+  background-color: @bg-acrylic;
+  color: @fg-text;
+  border: 1px solid @border-transparent;
+  border-radius: 20px;
+}
+
+/* Notification Popups (Floating & Compact) */
+.notification {
+  background-color: @bg-widget;
+  border: 1px solid @border-transparent;
+  border-radius: 16px;
+  margin: 6px 0px; /* Reduced vertical spacing */
+  padding: 10px;
+}
+
+.notification.critical {
+  border-color: @urgent;
+  background-color: rgba(243, 139, 168, 0.15);
+}
+
+.close-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: @fg-text;
+  border-radius: 50%;
+  min-width: 20px;
+  min-height: 20px;
+}
+.close-button:hover {
+  background-color: @urgent;
+  color: #1e1e2e;
+}
+
+/* Compact Widget Spacing */
+.widget-title {
+  margin: 10px 10px 4px 10px;
+  font-size: 16px;
+}
+
+.widget-title > button {
+  background-color: @bg-widget;
+  color: @fg-text;
+  border-radius: 12px;
+  padding: 4px 10px;
+}
+
+.widget-title > button:hover {
+  background-color: @primary-glass;
+}
+
+.widget-dnd {
+  margin: 4px 10px;
+  background-color: @bg-widget;
+  border-radius: 12px;
+}
+
+.widget-dnd > switch {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.widget-dnd > switch:checked {
+  background-color: @primary;
+}
+
+/* Compact Media Player */
+.widget-mpris {
+  background-color: @bg-widget;
+  border-radius: 16px;
+  margin: 8px 10px;
+  padding: 8px;
+}
+
+/* Thinner Sliders */
+.widget-volume,
+.widget-backlight {
+  background-color: @bg-widget;
+  border-radius: 16px;
+  margin: 6px 10px;
+  padding: 4px 12px;
+}
+
+scale trough {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  min-height: 8px; /* Thinner slider line */
+}
+
+scale highlight {
+  background-color: @primary;
+  border-radius: 8px;
+}
+
+/* Smaller Buttons Grid */
+.widget-buttons-grid {
+  margin: 8px 10px;
+  background-color: transparent;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  background-color: @bg-widget;
+  color: @fg-text;
+  border-radius: 14px;
+  margin: 4px;
+  min-width: 45px; /* Shrunk from 70px */
+  min-height: 45px; /* Shrunk from 70px */
+  font-size: 18px; /* Smaller icon */
+  transition: all 0.2s ease;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background-color: @primary-glass;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:active {
+  background-color: @primary;
+  color: #1e1e2e;
+  border-radius: 10px;
+}
